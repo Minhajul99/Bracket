@@ -142,7 +142,13 @@
           <div>
             <h2 class="text-primary">All Category</h2>
           </div>
-          <div><button class="btn btn-sm btn-info p-2" data-toggle="modal" data-target="#addCategory"> <i class="fa fa-plus"></i> Add Category</button></div>
+          <div>
+            <button class="btn btn-sm btn-info p-2" data-toggle="modal" data-target="#addCategory">
+                <i class="fa fa-plus"></i> Add Category
+            </button>
+            {{-- Using AddCategory Blade Page --}}
+            {{-- <a href="{{route('catcreate')}}" class="btn btn-sm btn-info p-2" >Add Category</a> --}}
+        </div>
         </div>
         <div class="msg"></div>
         <table class="table">

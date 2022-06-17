@@ -207,4 +207,6 @@ jQuery(document).ready(function () {
             },
         });
     });
+    // Summer Note Script
+    $('#pro_description').summernote();
 });

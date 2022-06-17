@@ -22,12 +22,12 @@
               <div class="form-group">
                 <label for="pname">Product Name</label>
                 <input type="text" placeholder="Enter Product name" class="form-control" name="pname" id="pname" value="{{$product->name}}">
-               
+
               </div>
 
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" placeholder="Enter Product Description" class="form-control" rows="4" name="description" id="description">{{ $product->description}}</textarea>
+                <textarea type="text" placeholder="Enter Product Description" class="form-control" rows="4" name="description" id="pro_description">{{ $product->description}}</textarea>
                 <span class="text-danger">
                   @error ('description')
                     {{$message}}

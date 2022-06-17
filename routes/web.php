@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend/index');
+})->name('index');
+
+// Api Check
+Route::get('/check', function () {
+    return view('backend/apicheck');
 });
 
 Route::get('/admin', function () {
@@ -61,6 +66,24 @@ Route::group(['prefix'=>'/admin'],function(){
         Route::post('/update/{id}','App\Http\Controllers\Backend\SubcategoryController@update')->middleware(['auth'])->name('subcategory.update');
         Route::get('/delete/{id}','App\Http\Controllers\Backend\SubcategoryController@destroy')->middleware(['auth'])->name('subcategory.delete');
     });
+
+    // For Items
+    Route::group(['prefix'=>'/items'],function(){
+
+        Route::post('/store','App\Http\Controllers\Backend\ItemsController@store')->middleware(['auth'])->name('items.store');
+        Route::get('/create','App\Http\Controllers\Backend\ItemsController@create')->middleware(['auth'])->name('items.create');
+        Route::get('/manage','App\Http\Controllers\Backend\ItemsController@index')->middleware(['auth'])->name('items.manage');
+        Route::get('/edit/{id}','App\Http\Controllers\Backend\ItemsController@edit')->middleware(['auth'])->name('items.edit');
+        Route::get('/show','App\Http\Controllers\Backend\ItemsController@catshow')->middleware(['auth'])->name('items.show');
+        Route::post('/update/{id}','App\Http\Controllers\Backend\ItemsController@update')->middleware(['auth'])->name('items.update');
+        Route::get('/delete/{id}','App\Http\Controllers\Backend\ItemsController@destroy')->middleware(['auth'])->name('items.delete');
+        Route::get('/gallerydelete/{id}','App\Http\Controllers\Backend\ItemsController@gallery_delete')->middleware(['auth'])->name('items.gallery_delete.delete');
+    });
 });
+
+// For Frontend
+// Route::get('/front', function () {
+//     return view('frontend/index');
+// });
 
 require __DIR__.'/auth.php';

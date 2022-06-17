@@ -31,7 +31,7 @@
 
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" placeholder="Enter Product Description" class="form-control" rows="4" name="description" id="description">{{old('description')}}</textarea>
+                <textarea type="text" placeholder="Enter Product Description" class="form-control" rows="4" name="description" id="pro_description">{{old('description')}}</textarea>
                 <span class="text-danger">
                   @error ('description')
                     {{$message}}

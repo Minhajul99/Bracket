@@ -36,7 +36,7 @@
             <tr>
             <td>{{ $sl}}</td>
              <td>{{ $data-> name}}</td>
-             <td>{{ $data-> description}}</td>
+             <td>{!! $data-> description!!}</td>
              <td>{{ $data-> category}}</td>
              <td>{{ $data-> size}}</td>
              <td>{{ $data-> costprice}}</td>

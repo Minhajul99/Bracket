@@ -26,16 +26,16 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.category.addcategory');
     }
 
-    public function catshow(){
+    public function catshow()
+    {
 
-        $alldata= Category::all();
+        $alldata = Category::all();
         return response()->json([
-            'data'=>$alldata
+            'data' => $alldata
         ]);
-
     }
 
     /**
@@ -46,26 +46,36 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validator=Validator::make($request->all(),[
-            'name'=>'required',
-            'des'=>'required',
-            'tag'=>'required'
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'des' => 'required',
+            'tag' => 'required'
         ]);
-        if($validator->fails()){
+
+        // For AddCategory Blade Page
+        // $category1 = new Category;
+        // $category1->name = $request->name;
+        // $category1->des = $request->des;
+        // $category1->tag = $request->tag;
+        // $category1->status = $request->status;
+        // $category1->save();
+        // return redirect()->route('catmanage');
+
+
+        if ($validator->fails()) {
             return response()->json([
-                'status'=>'faild',
-                'errors'=>$validator->getMessageBag()
+                'status' => 'faild',
+                'errors' => $validator->getMessageBag()
             ]);
-        }
-        else{
-            $category=new Category;
+        } else {
+            $category = new Category;
             $category->name = $request->name;
             $category->des = $request->des;
             $category->tag = $request->tag;
             $category->status = $request->status;
             $category->save();
             return response()->json([
-                'message'=>'Category Added Successfull',
+                'message' => 'Category Added Successfull',
             ]);
         }
     }
@@ -89,21 +99,18 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $alldata=Category::find($id);
-         if($alldata){
-             return response()->json([
-                'data'=>$alldata,
-
-             ]);
-         }
-
-         else{
+        $alldata = Category::find($id);
+        if ($alldata) {
             return response()->json([
-                'status'=>'400',
-                'error'=>'Data Not Found'
-             ]);
+                'data' => $alldata,
 
-         }
+            ]);
+        } else {
+            return response()->json([
+                'status' => '400',
+                'error' => 'Data Not Found'
+            ]);
+        }
         //  $alldata->update();
     }
 
@@ -116,7 +123,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category=Category::find($id);
+        $category = Category::find($id);
         $category->name = $request->name;
         $category->des = $request->des;
         $category->tag = $request->tag;
@@ -125,7 +132,7 @@ class CategoryController extends Controller
         $category->update();
         return response()->json([
             'status' => '200',
-            'message'=>'Category Update Successfull',
+            'message' => 'Category Update Successfull',
         ]);
 
         // if($category){
@@ -152,11 +159,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
+        $category = Category::find($id);
         $category->delete();
         return response()->json([
-            'message'=>'Category delete Successfully'
+            'message' => 'Category delete Successfully'
         ]);
     }
-
 }
