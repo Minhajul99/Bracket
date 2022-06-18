@@ -68,6 +68,7 @@
                                     </li>
                                 </ul>
                             </li>
+
                             <li class="menu-item-has-children">
                                 <a href="#">Vendors</a>
                                 <ul class="dropdown">
