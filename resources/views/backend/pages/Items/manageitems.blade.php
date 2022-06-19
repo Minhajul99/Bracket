@@ -31,7 +31,7 @@
                             @foreach ($items as $data)
                                 <tr>
                                     <td>{{ $sl }}</td>
-                                    <td>{{ $data->item_code }}</td>
+                                    <td>{{ $data->subcategory->subCatName }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->des }}</td>
                                     <td><img height="80" src="{{ asset('backend/items/' . $data->pic) }}" alt=""></td>

@@ -14,5 +14,8 @@ class Items extends Model
         'des',
         'pic',
     ];
+    public function subcategory(){
+        return $this->belongsTo(Subcategory::class,'item_code');
+    }
 
 }
