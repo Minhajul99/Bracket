@@ -2,11 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Allshow;
+use  App\Http\Controllers\sociallogin;
 
     //////////////////////////////
     //    All Routes For       //
     //    FrontEnd            //
     ///////////////////////////
+
+// Soical Media Login
+
+Route::get('/gotogoogle',[sociallogin::class,'gotogoogle'])->name('gotogoogle');
+Route::get('/google/login',[sociallogin::class,'googleinfostore']);
 
 
 Route::get('/',[Allshow::class,'showcategory']);

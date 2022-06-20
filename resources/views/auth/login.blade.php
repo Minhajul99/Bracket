@@ -46,6 +46,9 @@
                         </label>
                     </div>
                     <button type="submit" class="btn btn-info btn-block">Sign In</button>
+                    <a href="" class="btn btn-primary btn-sm m-1"><i class=" fab fa-facebook"></i></a>
+                    <a href="{{Route('gotogoogle')}}" class="btn btn-primary btn-sm m-1"><i class=" fab fa-google"></i></a>
+                    <a href="" class="btn btn-primary btn-sm m-1"><i class=" fab fa-linkedin"></i></a>
                     <div class="flex items-center justify-end mt-4">
                         @if (Route::has('password.request'))
                             <a class="underline text-sm text-gray-600 hover:text-gray-900"
