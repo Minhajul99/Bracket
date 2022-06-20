@@ -15,7 +15,7 @@ class Allshow extends Controller
     }
 
     public function showproduct($id){
-        $subcats=Subcategory::where('catId',$id);
+        $subcats=Subcategory::where('catId',$id)->get();
         return view('frontend.products',compact('subcats'));
     }
 }

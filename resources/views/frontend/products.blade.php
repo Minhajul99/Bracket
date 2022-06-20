@@ -6,23 +6,23 @@
     <!-- Header -->
     {{-- @include('frontend.includes.header') --}}
     <!-- Sub Header -->
-    {{-- @include('frontend.includes.subheader') --}}
+    @include('frontend.includes.subheader')
 
     <main class="main">
         <!-- Home Slider -->
-        {{-- @include('frontend.includes.homeslider')
+        @include('frontend.includes.homeslider')
         <!-- Category slider-->
         @include('frontend.includes.categoryslider')
         <!-- Banners-->
-        @include('frontend.includes.banner') --}}
+        @include('frontend.includes.banner')
         <!-- Show Products-->
         @include('frontend.includes.showproduct')
         <!-- Products Tabs-->
         {{-- @include('frontend.includes.productstabs') --}}
         <!-- Best Sales-->
-        {{-- @include('frontend.includes.bestsales') --}}
+        @include('frontend.includes.bestsales')
         <!-- Deals-->
-        {{-- @include('frontend.includes.deals') --}}
+        @include('frontend.includes.deals')
         <!--End 4 columns-->
     </main>
 
