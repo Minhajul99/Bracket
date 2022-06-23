@@ -54,9 +54,6 @@
                                         @enderror
                                     </span>
                                 </div>
-                            </div>
-
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="image">Item Thumnail Images</label>
                                     <input type="file" placeholder="Upload Image" class="form-control" name="image"
@@ -67,6 +64,10 @@
                                         @enderror
                                     </span>
                                 </div>
+                            </div>
+
+                            <div class="col-md-6">
+
 
                                 <div class="form-group">
                                     <label for="gallery">Item Gallery Images</label>
@@ -83,6 +84,26 @@
                                         id="quantity" value="{{ old('quantity') }}">
                                     <span class="text-danger">
                                         @error('quantity')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Buy Price</label>
+                                    <input type="text" placeholder="Buying Price of Items" class="form-control" name="buyprice"
+                                        id="buyprice" value="{{ old('buyprice') }}">
+                                    <span class="text-danger">
+                                        @error('buyprice')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Sell Price</label>
+                                    <input type="text" placeholder="Price of Items" class="form-control" name="sellprice"
+                                        id="sellprice" value="{{ old('sellprice') }}">
+                                    <span class="text-danger">
+                                        @error('sellprice')
                                             {{ $message }}
                                         @enderror
                                     </span>

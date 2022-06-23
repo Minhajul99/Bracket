@@ -10,39 +10,21 @@ jQuery(document).ready(function () {
                 jQuery(".tbody").html("");
                 $.each(result.data, function (key, item) {
                     if (item.status == "1") {
-                        var status =
-                            '<span class="badge badge-info">Active</span>';
+                        var status = '<span class="badge badge-info">Active</span>';
                     } else {
-                        var status =
-                            '<span class="badge badge-danger">Inactive</span>';
+                        var status ='<span class="badge badge-danger">Inactive</span>';
                     }
-                    jQuery(".tbody").append(
-                        "<tr>\
-              <td>" +
-                            sl +
-                            "</td>\
-              <td>" +
-                            item.name +
-                            "</td>\
-              <td>" +
-                            item.des +
-                            "</td>\
-              <td>" +
-                            item.tag +
-                            "</td>\
-              <td>" +
-                            status +
-                            '</td>\
-              <td>\
-              <button type="button" value="' +
-                            item.id +
-                            '" data-target="#catEditModal" data-toggle="modal" class="catedit btn btn-sm btn-info"><i class="fa fa-edit"></i></button>\
-                <button type="button" value="' +
-                            item.id +
-                            '" data-target="#catDelModal" data-toggle="modal" class="catedit btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>\
-                </td>\
-            </tr>'
-                    );
+                    jQuery(".tbody").append("<tr>\
+                    <td>" + sl + "</td>\
+                    <td>" + item.name + "</td>\
+                    <td>" + item.des + "</td>\
+                    <td>" + item.tag + "</td>\
+                    <td>" + status +'</td>\
+                    <td>\
+                        <button type="button" value="' + item.id +'" data-target="#catEditModal" data-toggle="modal" class="catedit btn btn-sm btn-info"><i class="fa fa-edit"></i></button>\
+                        <button type="button" value="' + item.id +'" data-target="#catDelModal" data-toggle="modal" class="catedit btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>\
+                    </td>\
+                    </tr>');
                     sl++;
                 });
             },
@@ -208,5 +190,5 @@ jQuery(document).ready(function () {
         });
     });
     // Summer Note Script
-    $('#pro_description').summernote();
+    $("#pro_description").summernote();
 });

@@ -23,6 +23,8 @@
                                 <th> Description </th>
                                 <th> Image </th>
                                 <th> Quantity </th>
+                                <th> Buy Price </th>
+                                <th> Sell Price </th>
                                 <th> Action </th>
                             </tr>
                         </thead>
@@ -36,6 +38,8 @@
                                     <td>{{ $data->des }}</td>
                                     <td><img height="80" src="{{ asset('backend/items/' . $data->pic) }}" alt=""></td>
                                     <td>{{ $data->quantity }}</td>
+                                    <td>{{ $data->buyprice }}</td>
+                                    <td>{{ $data->sellprice }}</td>
                                     {{-- <td>
                @if ($data->status == 1)
                <span class="badge badge-info">Active</span>

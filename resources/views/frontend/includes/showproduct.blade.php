@@ -81,7 +81,7 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <a href="shop-product-right.html">
-                                        <img class="default-img" src="{{ asset('frontend') }}/imgs/shop/product-2-1.jpg" alt="">
+                                        <img class="default-img" src="{{asset('backend/subcategoryimages/'.$subcat->image)}}">
                                         {{-- <img class="default-img" src="{{ asset('frontend') }}/imgs/shop/product-2-1.jpg" alt="">
                                         <img class="hover-img" src="{{ asset('frontend') }}/imgs/shop/product-2-2.jpg" alt=""> --}}
                                     </a>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                    <a href="shop-grid-right.html">{{$subcat->category->name}}</a>
                                 </div>
                                 <h2><a href="shop-product-right.html">{{$subcat->subCatName}}</a></h2>
                                 <div class="product-rate-cover">

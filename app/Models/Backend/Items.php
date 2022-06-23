@@ -13,6 +13,9 @@ class Items extends Model
         'name',
         'des',
         'pic',
+        'buyprice',
+        'sellprice',
+
     ];
     public function subcategory(){
         return $this->belongsTo(Subcategory::class,'item_code');

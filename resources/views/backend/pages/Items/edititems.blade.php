@@ -51,6 +51,36 @@
                                     </span>
                                 </div>
                                 <div class="form-group">
+                                    <label for="name">Enter Quantity</label>
+                                    <input type="text" placeholder="Quantity of Items" class="form-control" name="quantity"
+                                        id="quantity" value="{{ $items->quantity }}">
+                                    <span class="text-danger">
+                                        @error('quantity')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Buy Price</label>
+                                    <input type="text" placeholder="Buying Price of Items" class="form-control" name="buyprice"
+                                        id="buyprice" value="{{ $items->buyprice }}">
+                                    <span class="text-danger">
+                                        @error('buyprice')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Sell Price</label>
+                                    <input type="text" placeholder="Price of Items" class="form-control" name="sellprice"
+                                        id="sellprice" value="{{ $items->sellprice }}">
+                                    <span class="text-danger">
+                                        @error('sellprice')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                                <div class="form-group">
                                     <img height="100" src="{{ asset('backend/items/' . $items->pic) }}" alt="">
                                     <label for="image">Item Thumnail Images</label>
                                     <input type="file" placeholder="Upload Image" class="form-control" name="image"

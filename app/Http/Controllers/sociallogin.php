@@ -11,32 +11,31 @@ use Exception;
 
 class sociallogin extends Controller
 {
-    public function gotogoogle(){
+    public function gotogoogle()
+    {
         return Socialite::driver('google')->redirect();
     }
-    public function googleinfostore(){
-        try{
-            $googleUser=Socialite::driver('google')->user();
-        $findUser=User::where('socialId',$googleUser->id)->first();
-        if($findUser){
-            Auth::login($findUser);
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
-        else{
-            $tabbleField= new User();
-            $tabbleField->fname='Google User';
-            $tabbleField->name=$googleUser->name;
-            $tabbleField->email=$googleUser->email;
-            $tabbleField->role='3';
-            $tabbleField->socialId=$googleUser->id;
-            $tabbleField->password=encrypt($googleUser->id);
-            $tabbleField->save();
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
-        }
-        catch(Exception $error){
+    public function googleinfostore()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+            $findUser = User::where('socialId', $googleUser->id)->first();
+            if ($findUser) {
+                Auth::login($findUser);
+                return redirect()->intended(RouteServiceProvider::HOME);
+            } else {
+                $tabbleField = new User();
+                $tabbleField->fname = 'Google User';
+                $tabbleField->name = $googleUser->name;
+                $tabbleField->email = $googleUser->email;
+                $tabbleField->role = '3';
+                $tabbleField->socialId = $googleUser->id;
+                $tabbleField->password = encrypt($googleUser->id);
+                $tabbleField->save();
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+        } catch (Exception $error) {
             dd($error->getMessage());
         }
-
     }
 }

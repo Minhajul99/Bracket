@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Allshow;
-use  App\Http\Controllers\sociallogin;
+use App\Http\Controllers\sociallogin;
+use App\Http\Controllers\Frontend\AddtoCartController;
 
     //////////////////////////////
     //    All Routes For       //
@@ -14,9 +15,19 @@ use  App\Http\Controllers\sociallogin;
 Route::get('/gotogoogle',[sociallogin::class,'gotogoogle'])->name('gotogoogle');
 Route::get('/google/login',[sociallogin::class,'googleinfostore']);
 
+//Show product
 
 Route::get('/',[Allshow::class,'showcategory']);
 Route::get('/product/{id}',[Allshow::class,'showproduct'])->name('showproduct');
+
+//Add to Cart
+
+Route::group(['prefix' =>'/cart'],function(){
+Route::post('/add',[AddtoCartController::class,'store'])->middleware(['auth'])->name('addtocart');
+Route::get('/itemtocart/{id}',[AddtoCartController::class,'itemtocart'])->middleware(['auth'])->name('itemtocart');
+Route::get('/deleteitem/{id}',[AddtoCartController::class,'destroy'])->middleware(['auth'])->name('deleteitme');
+
+});
 
 
 // Api Check

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2022 at 03:58 PM
+-- Generation Time: Jun 21, 2022 at 04:48 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -91,7 +91,21 @@ CREATE TABLE `galleries` (
 INSERT INTO `galleries` (`id`, `item_code`, `gallery_pic`, `created_at`, `updated_at`) VALUES
 (7, 2, '650928051.jpg', '2022-06-16 10:08:47', '2022-06-16 10:08:47'),
 (8, 2, '1454844373.jpg', '2022-06-16 10:08:47', '2022-06-16 10:08:47'),
-(9, 2, '329823067.jpg', '2022-06-16 10:08:47', '2022-06-16 10:08:47');
+(9, 2, '329823067.jpg', '2022-06-16 10:08:47', '2022-06-16 10:08:47'),
+(10, 1, '772079193.png', '2022-06-21 02:39:54', '2022-06-21 02:39:54'),
+(11, 1, '740381486.jpg', '2022-06-21 02:39:54', '2022-06-21 02:39:54'),
+(12, 1, '1681608917.jpg', '2022-06-21 02:39:54', '2022-06-21 02:39:54'),
+(13, 5, '603974587.jpg', '2022-06-21 02:40:40', '2022-06-21 02:40:40'),
+(14, 5, '1837463230.jpg', '2022-06-21 02:40:40', '2022-06-21 02:40:40'),
+(15, 5, '844577583.jpg', '2022-06-21 02:41:14', '2022-06-21 02:41:14'),
+(16, 5, '31063353.jpg', '2022-06-21 02:41:14', '2022-06-21 02:41:14'),
+(17, 5, '1255200994.jpeg', '2022-06-21 02:41:14', '2022-06-21 02:41:14'),
+(18, 1, '1725360273.jpg', '2022-06-21 02:42:39', '2022-06-21 02:42:39'),
+(19, 1, '759894006.jpg', '2022-06-21 02:42:39', '2022-06-21 02:42:39'),
+(20, 3, '1074108801.jpg', '2022-06-21 02:43:17', '2022-06-21 02:43:17'),
+(21, 3, '536588458.jpg', '2022-06-21 02:43:17', '2022-06-21 02:43:17'),
+(22, 4, '1414631778.jpg', '2022-06-21 03:35:46', '2022-06-21 03:35:46'),
+(23, 4, '1174581654.jpg', '2022-06-21 03:35:46', '2022-06-21 03:35:46');
 
 -- --------------------------------------------------------
 
@@ -106,6 +120,8 @@ CREATE TABLE `items` (
   `des` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `quantity` int(11) NOT NULL,
+  `buyprice` float DEFAULT NULL,
+  `sellprice` float DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -114,9 +130,15 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `item_code`, `name`, `des`, `pic`, `quantity`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Galaxy S22 Ultra', 'Galaxy S22 Ultra Best Android', '513047470.jpg', 14, '2022-06-16 10:08:13', '2022-06-16 10:08:13'),
-(3, 2, 'Sony Smart Tv', 'Sony Smart Tv 4k', '114019541.jpg', 23, '2022-06-16 10:08:47', '2022-06-16 10:08:47');
+INSERT INTO `items` (`id`, `item_code`, `name`, `des`, `pic`, `quantity`, `buyprice`, `sellprice`, `created_at`, `updated_at`) VALUES
+(2, 1, 'Galaxy S22 Ultra', 'Galaxy S22 Ultra Best Android', '513047470.jpg', 14, 75000, 98000, '2022-06-16 10:08:13', '2022-06-16 10:08:13'),
+(3, 2, 'Sony Smart Tv', 'Sony Smart Tv 4k', '114019541.jpg', 23, 110000, 135000, '2022-06-16 10:08:47', '2022-06-16 10:08:47'),
+(4, 1, 'OnePlus 9 Pro', 'OnePlus 9 Pro', '1954373304.png', 13, 55000, 70000, '2022-06-21 02:39:54', '2022-06-21 02:39:54'),
+(5, 5, 'ILLEYEN', 'ILLEYEN', '1834585.jpg', 60, 5000, 8000, '2022-06-21 02:40:40', '2022-06-21 02:40:40'),
+(6, 5, 'Arong Panjabi', 'Arong Panjabi', '2057541059.jpg', 33, 2500, 4000, '2022-06-21 02:41:14', '2022-06-21 02:41:14'),
+(7, 1, 'iphone 13 pro max', 'iphone 13 pro max', '1029001541.jpg', 10, 98000, 105000, '2022-06-21 02:42:39', '2022-06-21 03:38:09'),
+(8, 3, 'Click Fan', 'Click Fan', '697809331.jpg', 12, 3000, 3800, '2022-06-21 02:43:17', '2022-06-21 02:43:17'),
+(9, 4, 'Super Light', 'Super Light', '1279888090.png', 5, 300, 400, '2022-06-21 03:35:46', '2022-06-21 03:35:46');
 
 -- --------------------------------------------------------
 
@@ -238,6 +260,7 @@ CREATE TABLE `users` (
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `socialId` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -250,8 +273,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `name`, `address`, `phone`, `pic`, `email`, `email_verified_at`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Md Minhajul Abedin', 'Minhajul Abedin', NULL, NULL, NULL, 'minhajul.us@gmail.com', NULL, '1', '$2y$10$rL/uTSPWVXUToNSGMl7uBe2b63a4FBB/en0WsZedLf2vnUdTchE.O', NULL, '2022-06-16 10:02:05', '2022-06-16 10:02:05');
+INSERT INTO `users` (`id`, `fname`, `name`, `address`, `phone`, `pic`, `email`, `socialId`, `email_verified_at`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Md Minhajul Abedin', 'Minhajul Abedin', NULL, NULL, NULL, 'minhajul.us@gmail.com', NULL, NULL, '1', '$2y$10$rL/uTSPWVXUToNSGMl7uBe2b63a4FBB/en0WsZedLf2vnUdTchE.O', NULL, '2022-06-16 10:02:05', '2022-06-16 10:02:05'),
+(2, 'Google User', 'Minhajul Abedin', NULL, NULL, NULL, 'mas8596@gmail.com', '113188873168519368670', NULL, '3', 'eyJpdiI6Ik5kekFmTWU3eE16TE1EeDErOFFQMmc9PSIsInZhbHVlIjoiRXZlSDBHZjFqWFZDUHJ4c0hQKzlSWW9ON01tRDFhU3lpZWM1K0RueTFmYz0iLCJtYWMiOiIyNWI3YzdlODEyOGQwNTU3ZTBiMGM5NzMzNmVkMDU1YTFjNzExYjEzNjBkMWJjMWU2ZmI0N2FmOTY3ZDUwMzgwIiwidGFnIjoiIn0=', NULL, '2022-06-20 11:00:54', '2022-06-20 11:00:54');
 
 --
 -- Indexes for dumped tables
@@ -344,13 +368,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -380,7 +404,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

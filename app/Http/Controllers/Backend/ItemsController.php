@@ -53,6 +53,8 @@ class ItemsController extends Controller
             $item->name = $request->name;
             $item->des = $request->des;
             $item->quantity = $request->quantity;
+            $item->buyprice = $request->buyprice;
+            $item->sellprice = $request->sellprice;
             $item->pic =  $imageCustomname;
             $item->save();
         }
@@ -111,6 +113,8 @@ class ItemsController extends Controller
         $item->name = $request->name;
         $item->des = $request->des;
         $item->quantity = $request->quantity;
+        $item->buyprice = $request->buyprice;
+        $item->sellprice = $request->sellprice;
 
         if (!empty($request->image)) {
 
