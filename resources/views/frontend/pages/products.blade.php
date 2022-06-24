@@ -4,9 +4,7 @@
 
     @include('frontend.includes.quickview')
     <!-- Header -->
-    {{-- @include('frontend.includes.header') --}}
-    <!-- Sub Header -->
-    @include('frontend.includes.subheader')
+    @include('frontend.includes.header')
 
     <main class="main">
         <!-- Home Slider -->

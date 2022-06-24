@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Frontend\AddCart;
-use phpDocumentor\Reflection\Types\Null_;
+use App\Models\Backend\Category;
+use App\Models\Backend\Items;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 class AddtoCartController extends Controller
 {
@@ -37,24 +39,42 @@ class AddtoCartController extends Controller
      */
     public function store(Request $request)
     {
-       $Addcart= new AddCart();
-       $Addcart->user_id=$request->uid;
-       $Addcart->product_id	=$request->pid;
-       $Addcart->title=$request->title;
-       $Addcart->price=$request->price;
-       $Addcart->qnt=$request->qnt;
-       $Addcart->pic=$request->pic;
-       $Addcart->save();
-       if($Addcart){
-        return response()->json([
-            'msg'=>'Item Added Successfuly'
-        ]);
-       }
-       else{
-        return response()->json([
-            'msg'=>'Something Went Wrong!!'
-        ]);
-       }
+    //   For Package Cart System
+        $pid=$request->pid;
+        $items=Items::find($pid);
+        Cart::add(array(
+            'id' => $items->id,
+            'name' =>$items->name,
+            'price' => $items->buyprice,
+            'quantity' => $request->qnt,
+            'attributes' => array(
+                'pic' =>$items->pic,
+            )
+        ));
+        return back();
+
+
+
+
+    //    For Manual Cart System
+    //    $Addcart= new AddCart();
+    //    $Addcart->user_id=$request->uid;
+    //    $Addcart->product_id	=$request->pid;
+    //    $Addcart->title=$request->title;
+    //    $Addcart->price=$request->price;
+    //    $Addcart->qnt=$request->qnt;
+    //    $Addcart->pic=$request->pic;
+    //    $Addcart->save();
+    //    if($Addcart){
+    //     return response()->json([
+    //         'msg'=>'Item Added Successfuly'
+    //     ]);
+    //    }
+    //    else{
+    //     return response()->json([
+    //         'msg'=>'Something Went Wrong!!'
+    //     ]);
+    //    }
     }
 
     /**
@@ -63,14 +83,21 @@ class AddtoCartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function itemtocart($id)
-    {
-        $Addcart= AddCart::where('user_id',$id)->get();
-        return response()->json([
-            'status'=>'success',
-            'data'=>$Addcart,
-        ]);
-    }
+// //    Manual Add cart
+//      public function itemtocart($id)
+//     {
+//         $Addcart= AddCart::where('user_id',$id)->get();
+//         return response()->json([
+//             'status'=>'success',
+//             'data'=>$Addcart,
+//         ]);
+//     }
+
+        public function viewcart(){
+            $allcats=Category::all();
+            $items=Items::all();
+            return view('frontend.pages.viewcart',compact('allcats','items'));
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -90,9 +117,29 @@ class AddtoCartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function cartupdate(Request $request, $id)
     {
-        //
+
+        Cart::update($id, array(
+            'quantity' => array(
+                'relative' => false,
+                'value' => $request->qnt,
+            ),
+          ));
+        return back();
+    }
+
+    // Global Search
+
+    public function globalsearch(){
+        return view('frontend.pages.globalsearch');
+    }
+    public function search($id){
+        $items=Items::where('name','like','%'.$id.'%')->get();
+        return response()->json([
+            'status'=>'success',
+            'data'=>$items,
+        ]);
     }
 
     /**
@@ -103,11 +150,14 @@ class AddtoCartController extends Controller
      */
     public function destroy($id)
     {
-        $Addcart= AddCart::find($id);
-        $Addcart->delete();
-        return response()->json([
-           'status'=>'success'
-        ]);
+        Cart::remove($id);
+        return back();
+        // Manual Delete Cart
+        // $Addcart= AddCart::find($id);
+        // $Addcart->delete();
+        // return response()->json([
+        //    'status'=>'success'
+        // ]);
 
     }
 }

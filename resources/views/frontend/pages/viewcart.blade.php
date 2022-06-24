@@ -7,6 +7,8 @@
     @include('frontend.includes.quickview')
     <!-- Header -->
     @include('frontend.includes.header')
+    <!-- Sub Header -->
+    {{-- @include('frontend.includes.subheader') --}}
 
     <main class="main">
         <!-- Home Slider -->
@@ -15,8 +17,8 @@
         @include('frontend.includes.categoryslider')
         <!-- Banners-->
         @include('frontend.includes.banner')
-        <!-- Products Tabs-->
-        @include('frontend.includes.productstabs')
+        <!-- View Cart-->
+        @include('frontend.includes.cart')
         <!-- Best Sales-->
         @include('frontend.includes.bestsales')
         <!-- Deals-->

@@ -68,13 +68,23 @@
                                                 <span>${{$item->buyprice}}</span>
                                                 <span class="old-price">${{$item->sellprice}}</span>
                                             </div>
-                                            <div class="add-cart">
+                                            <!-- Manual System To Add,Delete And View Cart -->
+                                            {{-- <div class="add-cart">
                                                 <input type="hidden" class="pid{{$item->id}}" value="{{$item->id}}">
                                                 <input type="hidden" class="title{{$item->id}}" value="{{$item->name}}">
                                                 <input type="hidden" class="price{{$item->id}}" value="{{$item->buyprice}}">
                                                 <input type="hidden" class="qnt{{$item->id}}" value="1" min="1">
                                                 <input type="hidden" class="pic{{$item->id}}" value="{{$item->pic}}">
                                                 <button class="add addcart{{$item->id}}"><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
+                                            </div> --}}
+                                            {{-- Package Usinig for Add Cart --}}
+                                            <div class="add-cart">
+                                                <form action="{{Route('addtocart')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="pid" value="{{$item->id}}">
+                                                    <input type="hidden" name="qnt" value="1" min="1">
+                                                    <button type="submit" class="add border-0"><i class="fi-rs-shopping-cart mr-5"></i>Add</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

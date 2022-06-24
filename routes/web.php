@@ -17,23 +17,41 @@ Route::get('/google/login',[sociallogin::class,'googleinfostore']);
 
 //Show product
 
-Route::get('/',[Allshow::class,'showcategory']);
+Route::get('/',[Allshow::class,'showcategory'])->name('index');
 Route::get('/product/{id}',[Allshow::class,'showproduct'])->name('showproduct');
 
 //Add to Cart
 
-Route::group(['prefix' =>'/cart'],function(){
-Route::post('/add',[AddtoCartController::class,'store'])->middleware(['auth'])->name('addtocart');
-Route::get('/itemtocart/{id}',[AddtoCartController::class,'itemtocart'])->middleware(['auth'])->name('itemtocart');
-Route::get('/deleteitem/{id}',[AddtoCartController::class,'destroy'])->middleware(['auth'])->name('deleteitme');
+// For Manual Cart System
+// Route::group(['prefix' =>'/cart'],function(){
+// Route::post('/add',[AddtoCartController::class,'store'])->middleware(['auth'])->name('addtocart');
+// Route::get('/itemtocart/{id}',[AddtoCartController::class,'itemtocart'])->middleware(['auth'])->name('itemtocart');
+// Route::get('/deleteitem/{id}',[AddtoCartController::class,'destroy'])->middleware(['auth'])->name('deleteitme');
+// });
 
-});
+// For Package Cart System
+
+Route::group(['prefix' =>'/cart'],function(){
+    Route::post('/add',[AddtoCartController::class,'store'])->middleware(['auth'])->name('addtocart');
+    Route::get('/itemtocart/{id}',[AddtoCartController::class,'itemtocart'])->middleware(['auth'])->name('itemtocart');
+    Route::get('/deleteitem/{id}',[AddtoCartController::class,'destroy'])->middleware(['auth'])->name('deleteitem');
+    Route::post('/cartupdate/{id}',[AddtoCartController::class,'cartupdate'])->middleware(['auth'])->name('cartupdate');
+    Route::get('/viewcart',[AddtoCartController::class,'viewcart'])->middleware(['auth'])->name('viewcart');
+    Route::get('/globalsearch',[AddtoCartController::class,'globalsearch'])->middleware(['auth'])->name('globalsearch');
+    Route::get('/search/{id}',[AddtoCartController::class,'search'])->middleware(['auth'])->name('search');
+
+    });
 
 
 // Api Check
 Route::get('/check', function () {
     return view('backend/apicheck');
 });
+
+// My Account
+Route::get('/myaccount',function(){
+    return view('frontend.pages.myaccount');
+})->middleware(['auth'])->name('myaccount');
 
     //////////////////////////////
     //    All Routes For       //
@@ -100,8 +118,8 @@ Route::group(['prefix'=>'/admin'],function(){
 });
 
 // For Frontend
-// Route::get('/front', function () {
-//     return view('frontend/index');
+// Route::get('/home', function () {
+//     return view('frontend/index')->name('index');
 // });
 
 require __DIR__.'/auth.php';

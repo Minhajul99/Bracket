@@ -139,19 +139,36 @@
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Nest" src="{{ asset('frontend') }}/imgs/theme/icons/icon-cart.svg">
-                                    <span class="pro-count blue qnt">0</span>
+                                    <span class="pro-count blue qnt">{{count(Cart::getContent())}}</span>
                                 </a>
                                 <a href="shop-cart.html"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul class="cartItem">
-
+                                        @php
+                                            $items = Cart::getContent();
+                                        @endphp
+                                        @foreach ($items as $item )
+                                        <li>
+                                            <div class="shopping-cart-img">
+                                                <a href="shop-product-right.html"><img alt="Nest"
+                                                        src="{{ asset('backend/items/'. $item->attributes->pic)}}"></a>
+                                            </div>
+                                            <div class="shopping-cart-title">
+                                                <h6><a href="shop-product-right.html">{{$item->name}}</a></h6>
+                                                <h6><span>{{$item->quantity}} × </span>{{($item->price*$item->quantity)}}</h6>
+                                            </div>
+                                            <div class="shopping-cart-delete">
+                                                <a href="{{Route('deleteitem',$item->id)}}"><i class="fi-rs-cross-small"></i></a>
+                                            </div>
+                                        </li>
+                                        @endforeach
                                     </ul>
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
-                                            <h4>Total <span class="totalAmount">$0.00</span></h4>
+                                            <h4>Total <span class="totalAmount">${{Cart::getTotal();}}</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
+                                            <a href="{{Route('viewcart')}}" class="outline">View cart</a>
                                             <a href="shop-checkout.html">Checkout</a>
                                         </div>
                                     </div>
@@ -165,8 +182,9 @@
                                 <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
+                                        @if (Auth::check())
                                         <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My
+                                            <a href="{{Route('myaccount')}}"><i class="fi fi-rs-user mr-10"></i>My
                                                 Account</a>
                                         </li>
                                         <li>
@@ -195,6 +213,14 @@
                                                 </a>
                                             </form>
                                         </li>
+                                        @else
+                                        <li>
+                                            <a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>Login</a>
+                                        </li>
+                                        <li>
+                                            <a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Registration</a>
+                                        </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
@@ -477,6 +503,9 @@
                                 <li>
                                     <a href="page-contact.html">Contact</a>
                                 </li>
+                                <li>
+                                    <a  target="_blank" href="{{Route('globalsearch')}}">Search</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -550,4 +579,5 @@
             </div>
         </div>
     </div>
+
 </header>
