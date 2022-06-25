@@ -51,7 +51,7 @@ Route::get('/check', function () {
 // My Account
 Route::get('/myaccount',function(){
     return view('frontend.pages.myaccount');
-})->middleware(['auth'])->name('myaccount');
+})->middleware(['auth','myauth'])->name('myaccount');
 
     //////////////////////////////
     //    All Routes For       //
@@ -60,7 +60,7 @@ Route::get('/myaccount',function(){
 
 Route::get('/admin', function () {
     return view('backend.dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','myauth'])->name('dashboard');
 
                 // Admin Group
 
