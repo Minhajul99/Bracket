@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 04:48 PM
+-- Generation Time: Jun 28, 2022 at 10:28 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `b1laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_carts`
+--
+
+CREATE TABLE `add_carts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `qnt` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_carts`
+--
+
+INSERT INTO `add_carts` (`id`, `user_id`, `product_id`, `title`, `pic`, `price`, `qnt`, `created_at`, `updated_at`) VALUES
+(12, 1, 6, 'Arong Panjabi', '2057541059.jpg', 25, 1, '2022-06-22 11:19:06', '2022-06-22 11:19:06'),
+(13, 1, 2, 'Galaxy S22 Ultra', '513047470.jpg', 750, 1, '2022-06-22 11:31:13', '2022-06-22 11:31:13');
 
 -- --------------------------------------------------------
 
@@ -131,14 +157,14 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `item_code`, `name`, `des`, `pic`, `quantity`, `buyprice`, `sellprice`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Galaxy S22 Ultra', 'Galaxy S22 Ultra Best Android', '513047470.jpg', 14, 75000, 98000, '2022-06-16 10:08:13', '2022-06-16 10:08:13'),
-(3, 2, 'Sony Smart Tv', 'Sony Smart Tv 4k', '114019541.jpg', 23, 110000, 135000, '2022-06-16 10:08:47', '2022-06-16 10:08:47'),
-(4, 1, 'OnePlus 9 Pro', 'OnePlus 9 Pro', '1954373304.png', 13, 55000, 70000, '2022-06-21 02:39:54', '2022-06-21 02:39:54'),
-(5, 5, 'ILLEYEN', 'ILLEYEN', '1834585.jpg', 60, 5000, 8000, '2022-06-21 02:40:40', '2022-06-21 02:40:40'),
-(6, 5, 'Arong Panjabi', 'Arong Panjabi', '2057541059.jpg', 33, 2500, 4000, '2022-06-21 02:41:14', '2022-06-21 02:41:14'),
-(7, 1, 'iphone 13 pro max', 'iphone 13 pro max', '1029001541.jpg', 10, 98000, 105000, '2022-06-21 02:42:39', '2022-06-21 03:38:09'),
-(8, 3, 'Click Fan', 'Click Fan', '697809331.jpg', 12, 3000, 3800, '2022-06-21 02:43:17', '2022-06-21 02:43:17'),
-(9, 4, 'Super Light', 'Super Light', '1279888090.png', 5, 300, 400, '2022-06-21 03:35:46', '2022-06-21 03:35:46');
+(2, 1, 'Galaxy S22 Ultra', 'Galaxy S22 Ultra Best Android', '513047470.jpg', 14, 750, 900, '2022-06-16 10:08:13', '2022-06-22 05:38:45'),
+(3, 2, 'Sony Smart Tv', 'Sony Smart Tv 4k', '114019541.jpg', 23, 800, 850, '2022-06-16 10:08:47', '2022-06-22 05:39:05'),
+(4, 1, 'OnePlus 9 Pro', 'OnePlus 9 Pro', '1954373304.png', 13, 550, 600, '2022-06-21 02:39:54', '2022-06-22 05:39:19'),
+(5, 5, 'ILLEYEN', 'ILLEYEN', '1834585.jpg', 60, 50, 80, '2022-06-21 02:40:40', '2022-06-22 05:39:30'),
+(6, 5, 'Arong Panjabi', 'Arong Panjabi', '2057541059.jpg', 33, 25, 32, '2022-06-21 02:41:14', '2022-06-22 05:39:43'),
+(7, 1, 'iphone 13 pro max', 'iphone 13 pro max', '1029001541.jpg', 10, 980, 1050, '2022-06-21 02:42:39', '2022-06-22 05:39:53'),
+(8, 3, 'Click Fan', 'Click Fan', '697809331.jpg', 12, 300, 380, '2022-06-21 02:43:17', '2022-06-22 05:40:03'),
+(9, 4, 'Super Light', 'Super Light', '1279888090.png', 5, 10, 15, '2022-06-21 03:35:46', '2022-06-21 03:35:46');
 
 -- --------------------------------------------------------
 
@@ -165,7 +191,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (43, '2022_05_19_152756_create_categories_table', 1),
 (44, '2022_05_24_151653_create_subcategories_table', 1),
 (45, '2022_05_26_151934_create_items_table', 1),
-(46, '2022_05_26_152119_create_galleries_table', 1);
+(46, '2022_05_26_152119_create_galleries_table', 1),
+(47, '2022_06_20_052349_create_sessions_table', 2),
+(48, '2022_06_21_144845_create_add_carts_table', 2);
 
 -- --------------------------------------------------------
 
@@ -215,6 +243,21 @@ CREATE TABLE `products` (
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 from Active 2 for Inative',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -275,11 +318,17 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fname`, `name`, `address`, `phone`, `pic`, `email`, `socialId`, `email_verified_at`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Md Minhajul Abedin', 'Minhajul Abedin', NULL, NULL, NULL, 'minhajul.us@gmail.com', NULL, NULL, '1', '$2y$10$rL/uTSPWVXUToNSGMl7uBe2b63a4FBB/en0WsZedLf2vnUdTchE.O', NULL, '2022-06-16 10:02:05', '2022-06-16 10:02:05'),
-(2, 'Google User', 'Minhajul Abedin', NULL, NULL, NULL, 'mas8596@gmail.com', '113188873168519368670', NULL, '3', 'eyJpdiI6Ik5kekFmTWU3eE16TE1EeDErOFFQMmc9PSIsInZhbHVlIjoiRXZlSDBHZjFqWFZDUHJ4c0hQKzlSWW9ON01tRDFhU3lpZWM1K0RueTFmYz0iLCJtYWMiOiIyNWI3YzdlODEyOGQwNTU3ZTBiMGM5NzMzNmVkMDU1YTFjNzExYjEzNjBkMWJjMWU2ZmI0N2FmOTY3ZDUwMzgwIiwidGFnIjoiIn0=', NULL, '2022-06-20 11:00:54', '2022-06-20 11:00:54');
+(15, 'Md Minhajul Abedin', 'Minhajul Abedin', NULL, NULL, NULL, 'mas8596@gmail.com', NULL, NULL, '3', '$2y$10$hVPuPVdjNow4V1wZvS3QyOGI1FLgbyh59aYMh33ncdH15.GdMdRD6', NULL, '2022-06-24 04:32:12', '2022-06-24 04:32:12');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `add_carts`
+--
+ALTER TABLE `add_carts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -335,6 +384,14 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `products_name_unique` (`name`);
 
 --
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -351,6 +408,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `add_carts`
+--
+ALTER TABLE `add_carts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -380,7 +443,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -404,7 +467,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
